@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chord Drawer</title>
+    <script type="text/javascript" src="../static/js/process.js?version={version}"></script>
+    <link rel='stylesheet' href='../static/css/style.css?version={version}'>
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+<header>
+    <img src="../static/img/logo.png" alt="Chord Drawer" class="logo" width="150">
+</header>
+<main>
+    <section>
+        <div class="base_container">
+            <output class="header_chord"></output>
+            <button class="refresh"><span class="material-symbols-outlined">refresh</span> </button>
+        </div>
+        <div class="fretboard">
+            <div class="svg-container">
+                <svg id="fretboard_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 150">
+                    <line class="saddle" x1="0" y1="0" x2="0" y2="150"/>
+                    <line class="fret" x1="50" y1="0" x2="50" y2="150"/>
+                    <line class="fret" x1="100" y1="0" x2="100" y2="150"/>
+                    <line class="fret" x1="150" y1="0" x2="150" y2="150"/>
+                    <line class="fret" x1="200" y1="0" x2="200" y2="150"/>
+                    <line class="fret" x1="250" y1="0" x2="250" y2="150"/>
+                    <line class="fret" x1="300" y1="0" x2="300" y2="150"/>
+                    <line class="fret" x1="350" y1="0" x2="350" y2="150"/>
+                    <line class="fret" x1="400" y1="0" x2="400" y2="150"/>
+                    <line class="fret" x1="450" y1="0" x2="450" y2="150"/>
+                    <line class="fret" x1="500" y1="0" x2="500" y2="150"/>
+                    <line class="fret" x1="550" y1="0" x2="550" y2="150"/>
+                    <line class="fret" x1="600" y1="0" x2="600" y2="150"/>
+                    <line class="fret" x1="650" y1="0" x2="650" y2="150"/>
+                    <line class="fret" x1="700" y1="0" x2="700" y2="150"/>
+                    <line class="fret" x1="750" y1="0" x2="750" y2="150"/>
+                    <line class="fret" x1="800" y1="0" x2="800" y2="150"/>
+                    <line class="fret" x1="850" y1="0" x2="850" y2="150"/>
+                    <line class="fret" x1="900" y1="0" x2="900" y2="150"/>
+                    <line class="fret" x1="950" y1="0" x2="950" y2="150"/>
+                    <line class="fret" x1="1000" y1="0" x2="1000" y2="150"/>
+                    <line class="fret" x1="1050" y1="0" x2="1050" y2="150"/>
+                    <line class="fret" x1="1100" y1="0" x2="1100" y2="150"/>
+                    <line class="fret" x1="1150" y1="0" x2="1150" y2="150"/>
+                    <line id="string1" class="string" x1="0" y1="1" x2="1150" y2="1"/>
+                    <line id="string2" class="string" x1="0" y1="30" x2="1150" y2="30"/>
+                    <line id="string3" class="string" x1="0" y1="60" x2="1150" y2="60"/>
+                    <line id="string4" class="string" x1="0" y1="89" x2="1150" y2="89"/>
+                    <line id="string5" class="string" x1="0" y1="119" x2="1150" y2="119"/>
+                    <line id="string6" class="string" x1="0" y1="149" x2="1150" y2="149"/>
+                    <circle  class="marker" cx="125" cy="75" r="5"/>
+                    <circle  class="marker" cx="225" cy="75" r="5"/>
+                    <circle  class="marker" cx="325" cy="75" r="5"/>
+                    <circle  class="marker" cx="425" cy="75" r="5"/>
+                    <circle  class="marker" cx="575" cy="45" r="5"/>
+                    <circle  class="marker" cx="575" cy="105" r="5"/>
+                    <circle  class="marker" cx="725" cy="75" r="5"/>
+                    <circle  class="marker" cx="825" cy="75" r="5"/>
+                    <circle  class="marker" cx="925" cy="75" r="5"/>
+                    <circle  class="marker" cx="1025" cy="75" r="5"/>
+                </svg>
+            </div>
+            <div class="fingers_container">
+                <svg id="fingers" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180">
+                    <circle class="open f10" cx="25" cy="15" r="10"/>
+                    <circle class="finger f11" cx="75" cy="15" r="10"/>
+                    <circle class="finger f12" cx="125" cy="15" r="10"/>
+                    <circle class="finger f13" cx="175" cy="15" r="10"/>
+                    <circle class="finger f14" cx="225" cy="15" r="10"/>
+                    <circle class="finger f15" cx="275" cy="15" r="10"/>
+
+                    <circle class="open f20" cx="25" cy="45" r="10"/>
+                    <circle class="finger f21" cx="75" cy="45" r="10"/>
+                    <circle class="finger f22" cx="125" cy="45" r="10"/>
+                    <circle class="finger f23" cx="175" cy="45" r="10"/>
+                    <circle class="finger f24" cx="225" cy="45" r="10"/>
+                    <circle class="finger f25" cx="275" cy="45" r="10"/>
+
+                    <circle class="open f30" cx="25" cy="75" r="10"/>
+                    <circle class="finger f31" cx="75" cy="75" r="10"/>
+                    <circle class="finger f32" cx="125" cy="75" r="10"/>
+                    <circle class="finger f33" cx="175" cy="75" r="10"/>
+                    <circle class="finger f34" cx="225" cy="75" r="10"/>
+                    <circle class="finger f35" cx="275" cy="75" r="10"/>
+
+                    <circle class="open f40" cx="25" cy="105" r="10"/>
+                    <circle class="finger f41" cx="75" cy="105" r="10"/>
+                    <circle class="finger f42" cx="125" cy="105" r="10"/>
+                    <circle class="finger f43" cx="175" cy="105" r="10"/>
+                    <circle class="finger f44" cx="225" cy="105" r="10"/>
+                    <circle class="finger f45" cx="275" cy="105" r="10"/>
+
+                    <circle class="open f50" cx="25" cy="135" r="10"/>
+                    <circle class="finger f51" cx="75" cy="135" r="10"/>
+                    <circle class="finger f52" cx="125" cy="135" r="10"/>
+                    <circle class="finger f53" cx="175" cy="135" r="10"/>
+                    <circle class="finger f54" cx="225" cy="135" r="10"/>
+                    <circle class="finger f55" cx="275" cy="135" r="10"/>
+
+                    <circle class="open f60" cx="25" cy="165" r="10"/>
+                    <circle class="finger f61" cx="75" cy="165" r="10"/>
+                    <circle class="finger f62" cx="125" cy="165" r="10"/>
+                    <circle class="finger f63" cx="175" cy="165" r="10"/>
+                    <circle class="finger f64" cx="225" cy="165" r="10"/>
+                    <circle class="finger f65" cx="275" cy="165" r="10"/>
+
+                    <line class="muted m_str1 visible" x1="20" y1="10" x2="30" y2="20"/>
+                    <line class="muted m_str1 visible" x1="20" y1="20" x2="30" y2="10"/>
+                    <line class="muted m_str2 visible" x1="20" y1="40" x2="30" y2="50"/>
+                    <line class="muted m_str2 visible" x1="20" y1="50" x2="30" y2="40"/>
+                    <line class="muted m_str3 visible" x1="20" y1="70" x2="30" y2="80"/>
+                    <line class="muted m_str3 visible" x1="20" y1="80" x2="30" y2="70"/>
+                    <line class="muted m_str4 visible" x1="20" y1="100" x2="30" y2="110"/>
+                    <line class="muted m_str4 visible" x1="20" y1="110" x2="30" y2="100"/>
+                    <line class="muted m_str5 visible" x1="20" y1="130" x2="30" y2="140"/>
+                    <line class="muted m_str5 visible" x1="20" y1="140" x2="30" y2="130"/>
+                    <line class="muted m_str6 visible" x1="20" y1="160" x2="30" y2="170"/>
+                    <line class="muted m_str6 visible" x1="20" y1="170" x2="30" y2="160"/>
+                </svg>
+            </div>
+            <form class="frets">
+                <div class="string_container">
+                    <input class="fret_input str1" id="f10" type="checkbox" value="0" name="str1">
+                    <label class="fret_label" for="f10"></label>
+                    <input class="fret_input str1" id="f11" type="checkbox" value="1" name="str1">
+                    <label class="fret_label" for="f11"></label>
+                    <input class="fret_input str1" id="f12" type="checkbox" value="2" name="str1">
+                    <label class="fret_label" for="f12"></label>
+                    <input class="fret_input str1" id="f13" type="checkbox" value="3" name="str1">
+                    <label class="fret_label" for="f13"></label>
+                    <input class="fret_input str1" id="f14" type="checkbox" value="4" name="str1">
+                    <label class="fret_label" for="f14"></label>
+                    <input class="fret_input str1" id="f15" type="checkbox" value="5" name="str1">
+                    <label class="fret_label" for="f15"></label>
+                </div>
+                <div class="string_container">
+                    <input class="fret_input str2" id="f20" type="checkbox" value="0" name="str2">
+                    <label class="fret_label" for="f20"></label>
+                    <input class="fret_input str2" id="f21" type="checkbox" value="1" name="str2">
+                    <label class="fret_label" for="f21"></label>
+                    <input class="fret_input str2" id="f22" type="checkbox" value="2" name="str2">
+                    <label class="fret_label" for="f22"></label>
+                    <input class="fret_input str2" id="f23" type="checkbox" value="3" name="str2">
+                    <label class="fret_label" for="f23"></label>
+                    <input class="fret_input str2" id="f24" type="checkbox" value="4" name="str2">
+                    <label class="fret_label" for="f24"></label>
+                    <input class="fret_input str2" id="f25" type="checkbox" value="5" name="str2">
+                    <label class="fret_label" for="f25"></label>
+                </div>
+                <div class="string_container">
+                    <input class="fret_input str3" id="f30" type="checkbox" value="0" name="str3">
+                    <label class="fret_label" for="f30"></label>
+                    <input class="fret_input str3" id="f31" type="checkbox" value="1" name="str3">
+                    <label class="fret_label" for="f31"></label>
+                    <input class="fret_input str3" id="f32" type="checkbox" value="2" name="str3">
+                    <label class="fret_label" for="f32"></label>
+                    <input class="fret_input str3" id="f33" type="checkbox" value="3" name="str3">
+                    <label class="fret_label" for="f33"></label>
+                    <input class="fret_input str3" id="f34" type="checkbox" value="4" name="str3">
+                    <label class="fret_label" for="f34"></label>
+                    <input class="fret_input str3" id="f35" type="checkbox" value="5" name="str3">
+                    <label class="fret_label" for="f35"></label>
+                </div>
+                <div class="string_container">
+                    <input class="fret_input str4" id="f40" type="checkbox" value="0" name="str4">
+                    <label class="fret_label" for="f40"></label>
+                    <input class="fret_input str4" id="f41" type="checkbox" value="1" name="str4">
+                    <label class="fret_label" for="f41"></label>
+                    <input class="fret_input str4" id="f42" type="checkbox" value="2" name="str4">
+                    <label class="fret_label" for="f42"></label>
+                    <input class="fret_input str4" id="f43" type="checkbox" value="3" name="str4">
+                    <label class="fret_label" for="f43"></label>
+                    <input class="fret_input str4" id="f44" type="checkbox" value="4" name="str4">
+                    <label class="fret_label" for="f44"></label>
+                    <input class="fret_input str4" id="f45" type="checkbox" value="5" name="str4">
+                    <label class="fret_label" for="f45"></label>
+                </div>
+                <div class="string_container">
+                    <input class="fret_input str5" id="f50" type="checkbox" value="0" name="str5">
+                    <label class="fret_label" for="f50"></label>
+                    <input class="fret_input str5" id="f51" type="checkbox" value="1" name="str5">
+                    <label class="fret_label" for="f51"></label>
+                    <input class="fret_input str5" id="f52" type="checkbox" value="2" name="str5">
+                    <label class="fret_label" for="f52"></label>
+                    <input class="fret_input str5" id="f53" type="checkbox" value="3" name="str5">
+                    <label class="fret_label" for="f53"></label>
+                    <input class="fret_input str5" id="f54" type="checkbox" value="4" name="str5">
+                    <label class="fret_label" for="f54"></label>
+                    <input class="fret_input str5" id="f55" type="checkbox" value="5" name="str5">
+                    <label class="fret_label" for="f55"></label>
+                </div>
+                <div class="string_container">
+                    <input class="fret_input str6" id="f60" type="checkbox" value="0" name="str6">
+                    <label class="fret_label" for="f60"></label>
+                    <input class="fret_input str6" id="f61" type="checkbox" value="1" name="str6">
+                    <label class="fret_label" for="f61"></label>
+                    <input class="fret_input str6" id="f62" type="checkbox" value="2" name="str6">
+                    <label class="fret_label" for="f62"></label>
+                    <input class="fret_input str6" id="f63" type="checkbox" value="3" name="str6">
+                    <label class="fret_label" for="f63"></label>
+                    <input class="fret_input str6" id="f64" type="checkbox" value="4" name="str6">
+                    <label class="fret_label" for="f64"></label>
+                    <input class="fret_input str6" id="f65" type="checkbox" value="5" name="str6">
+                    <label class="fret_label" for="f65"></label>
+                </div>
+            </form>
+        </div>
+        <div class="control_container">
+            <input class="capo_input" id="capo" type="checkbox">
+            <label class="capo_label input_label" for="capo">capo</label>
+            <div class="fret_numbers">
+                <div class="fret_meter_control">
+                    <button class="meter_btn " id="left" value="-1">
+                        <span class="material-symbols-outlined nav_left">navigate_before</span>
+                    </button>
+                    <button class="meter_btn visible" id="right" value="1">
+                        <span class="material-symbols-outlined nav_right">navigate_next</span>
+                    </button>
+                </div>
+                <output class="fret_number">1</output>
+                <output class="fret_number">2</output>
+                <output class="fret_number">3</output>
+                <output class="fret_number">4</output>
+                <output class="fret_number">5</output>
+            </div>
+            <div class="fret_meter">
+                <input id="meter" type="range" min="0" max="18" value="0">
+                <label for="meter"></label>
+            </div>
+        </div>
+    <div class="title_container">
+            <input id="base_chord" type="radio" name="title" checked>
+            <label for="base_chord" class="base_chord title_label "></label>
+            <input id="var_1" type="radio" name="title">
+            <label for="var_1" class="var title_label "></label>
+            <input id="var_2" type="radio" name="title">
+            <label for="var_2" class="var title_label "></label>
+            <input id="var_3" type="radio" name="title">
+            <label for="var_3" class="var title_label "></label>
+            <input id="var_4" type="radio" name="title">
+            <label for="var_4" class="var title_label "></label>
+            <input id="var_5" type="radio" name="title">
+            <label for="var_5" class="var title_label "></label>
+    </div>
+    </section>
+    <section>
+        <div class="choice">
+            <button class="choice_btn" id="build_tab" disabled>Build Tab</button>
+            <button class="choice_btn" id="build_png" disabled>Render PNG</button>
+        </div>
+        <div class="content_container hidden">
+            <button class="copy_to_clipboard hidden">
+                <span class="material-symbols-outlined">content_copy</span>
+            </button>
+            <a href="#" class="download hidden" download="">
+                <span class="material-symbols-outlined">download</span>
+            </a>
+            <div class="content">
+
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <p class="footer">ⓒ 2023{{.}} Евгений Казачков, Санкт-Петербург</p>
+    <a class="footer" href="https://github.com/eugene-static"><img src="../static/img/github.png" alt="github" height="16"> eugene-static </a>
+</footer>
+</body>
+</html>
