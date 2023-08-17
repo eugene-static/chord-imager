@@ -72,15 +72,13 @@ func (h *ChordHandler) indexHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		h.log.Debug("applying html template")
 		w.WriteHeader(http.StatusOK)
-		err = tmpl.Execute(w, year)
-		if err != nil {
+		if err = tmpl.Execute(w, year); err != nil {
 			h.serverError(w, "failed to apply html template", err)
 			return
 		}
 	case http.MethodPost:
 		request := &dto.NameRequest{}
-		err := json.NewDecoder(r.Body).Decode(&request)
-		if err != nil {
+		if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 			h.clientError(w, err.Error(), http.StatusBadRequest)
 			return
 		}
@@ -136,8 +134,7 @@ func (h *ChordHandler) indexHandler(w http.ResponseWriter, r *http.Request) {
 				BaseName:   baseChord,
 				Variations: variations,
 			}
-			err = json.NewEncoder(w).Encode(&nameResponse)
-			if err != nil {
+			if err = json.NewEncoder(w).Encode(&nameResponse); err != nil {
 				h.serverError(w, "failed to write response data", err)
 				return
 			}
@@ -159,8 +156,7 @@ func (h *ChordHandler) indexHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			tabResponse := &dto.TabResponse{Tab: chordTab.Tab}
 			h.log.Info("tab", slog.String("name", request.Event))
-			err = json.NewEncoder(w).Encode(&tabResponse)
-			if err != nil {
+			if err = json.NewEncoder(w).Encode(&tabResponse); err != nil {
 				h.serverError(w, "failed to write response data", err)
 				return
 			}
@@ -187,8 +183,7 @@ func (h *ChordHandler) indexHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			imgResponse := &dto.ImageResponse{URL: img.URL}
 			h.log.Info("image", slog.String("url", img.URL))
-			err = json.NewEncoder(w).Encode(&imgResponse)
-			if err != nil {
+			if err = json.NewEncoder(w).Encode(&imgResponse); err != nil {
 				h.serverError(w, "failed to write response data", err)
 				return
 			}

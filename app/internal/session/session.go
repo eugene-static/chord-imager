@@ -54,14 +54,13 @@ func (m *Manager) Create(id string) (string, error) {
 		id = random.String(idLength)
 	}
 	filePath := filepath.Join(m.cfg.Server.TempStorage, id)
-	err := os.Mkdir(filePath, os.ModeDir)
-	if err != nil && !errors.Is(err, os.ErrExist) {
+	if err := os.Mkdir(filePath, os.ModeDir); err != nil && !errors.Is(err, os.ErrExist) {
 		m.log.Error("failed to create session", slog.String("session", id), slog.Any("details", err))
 		return "", err
 	}
 	session := &Session{
 		Registered: time.Now(),
-		Expired:    time.AfterFunc(time.Duration(m.cfg.Session.Lifetime)*time.Second, m.clean(id)),
+		Expired:    time.AfterFunc(time.Duration(m.cfg.Session.Lifetime)*time.Minute, m.clean(id)),
 		FilePath:   filePath,
 	}
 	m.log.Info("recording new session", slog.String("session ID", id))
@@ -83,7 +82,7 @@ func (m *Manager) UpdateTime(id string) {
 	if !timer.Stop() {
 		<-timer.C
 	}
-	m.storage[id].Expired = time.AfterFunc(time.Duration(m.cfg.Session.Lifetime)*time.Second, m.clean(id))
+	m.storage[id].Expired = time.AfterFunc(time.Duration(m.cfg.Session.Lifetime)*time.Minute, m.clean(id))
 }
 
 func (m *Manager) clean(id string) func() {
@@ -93,8 +92,7 @@ func (m *Manager) clean(id string) func() {
 			slog.String("duration", time.Since(m.storage[id].Registered).String()))
 		m.mu.Lock()
 		defer m.mu.Unlock()
-		err := os.RemoveAll(m.storage[id].FilePath)
-		if err != nil {
+		if err := os.RemoveAll(m.storage[id].FilePath); err != nil {
 			m.log.Warn("failed to remove folder",
 				slog.Any("details", err),
 				slog.String("dir", m.storage[id].FilePath))

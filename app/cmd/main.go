@@ -30,8 +30,7 @@ func main() {
 	router := http.NewServeMux()
 	var mu sync.Mutex
 	app := server.ApplicationInit(cfg, router, log, &mu)
-	err = app.Start(ctx)
-	if err != nil {
+	if err = app.Start(ctx); err != nil {
 		log.Error("failed to start server", slog.Any("details", err))
 		os.Exit(1)
 	}
