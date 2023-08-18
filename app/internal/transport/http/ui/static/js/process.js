@@ -76,8 +76,11 @@ function construct_html(c) {
     return result
 }
 
-document.addEventListener("DOMContentLoaded", function (e) {
-
+document.addEventListener("DOMContentLoaded", () => {
+    window.onload = () => {
+        document.querySelector('main').style.opacity = '100%'
+        hide(document.querySelector('.loader'))
+    }
     let strings = Array(6).fill('X')
 
     let info = {
@@ -136,13 +139,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (info.pattern !== "XXXXXX") {
             requestData.event = 'GetName'
             requestData.info = info
-            console.log(JSON.stringify(requestData))
+            let request = JSON.stringify(requestData)
+            console.log(request)
             fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify(requestData)
+                body: request
             })
                 .then(response => response.json())
                 .then((data) => {
@@ -200,13 +204,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (info.pattern !== "XXXXXX") {
             requestData.event = 'GetTab'
             requestData.info = info
-            console.log(JSON.stringify(requestData))
+            let request = JSON.stringify(requestData)
+            console.log(request)
             fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify(requestData)
+                body: request
             })
                 .then(response => response.json())
                 .then((data) => {
@@ -232,13 +237,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (info.pattern !== "XXXXXX") {
             requestData.event = 'GetPNG'
             requestData.info = info
-            console.log(JSON.stringify(requestData))
+            let request = JSON.stringify(requestData)
+            console.log(request)
             fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify(requestData)
+                body: request
             })
                 .then(response => response.json())
                 .then((data) => {
